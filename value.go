@@ -62,6 +62,8 @@ func convertValue(athenaType string, rawValue *string) (interface{}, error) {
 		return time.Parse(TimestampWithTimeZoneLayout, val)
 	case "date":
 		return time.Parse(DateLayout, val)
+	case "varbinary":		
+		return []byte(val), nil
 	default:
 		panic(fmt.Errorf("unknown type `%s` with value %s", athenaType, val))
 	}
