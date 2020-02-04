@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/aws/aws-sdk-go/service/athena"
 )
 
@@ -63,6 +64,8 @@ func convertValue(athenaType string, rawValue *string) (interface{}, error) {
 	case "date":
 		return time.Parse(DateLayout, val)
 	case "varbinary":		
+		
+	spew.Dump("v1.2")
 		return val, nil
 	default:
 		panic(fmt.Errorf("unknown type `%s` with value %s", athenaType, val))
